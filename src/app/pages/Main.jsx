@@ -2,7 +2,8 @@ import React from "react";
 import Gallery from "../components/Gallery.jsx";
 import Header from "../components/Header.jsx";
 import Footer from "../components/Footer.jsx";
-import Modal from "../components/Modal.jsx";
+import AddModal from "../components/AddModal.jsx";
+import DeleteModal from "../components/DeleteModal.jsx";
 import "../styles/Main.css";
 
 const Main = () => {
@@ -15,7 +16,7 @@ const Main = () => {
             type="button"
             className="btn btn-primary"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#addModal"
           >
             Añadir nueva imagen +
           </button>
@@ -23,7 +24,8 @@ const Main = () => {
         <Gallery />
       </main>
       <Footer />
-      <Modal />
+      <AddModal />
+      <DeleteModal />
     </div>
   );
 };

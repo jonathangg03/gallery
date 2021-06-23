@@ -1,11 +1,11 @@
 import React from "react";
 import Form from "./Form.jsx";
 
-const Modal = () => {
+const AddModal = () => {
   return (
     <div
       className="modal fade"
-      id="exampleModal"
+      id="addModal"
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -26,15 +26,10 @@ const Modal = () => {
           <div className="modal-body">
             <Form />
           </div>
-          <div className="modal-footer">
-            <button type="button" className="btn btn-primary">
-              Añadir imagen
-            </button>
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Modal;
+export default AddModal;

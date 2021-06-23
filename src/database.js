@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 mongoose
   .connect(
     "mongodb+srv://jona_gallery:jr2KvOeqgCjCXbo3@cluster0.jstvq.mongodb.net/gallery?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true }
+    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
   )
   .then(() => console.log("DB connected"));
 
