@@ -1,9 +1,16 @@
 /* .container-fluid {
 } */
 
-header {
-  font-size: 40px;
-  text-align: center;
+.add_btn {
+  max-width: 576px;
+}
+
+.card-container {
+  height: 200px;
+}
+
+img {
+  height: 300px;
 }
 
 footer {
@@ -11,7 +18,7 @@ footer {
   color: white;
 }
 
-.card {
+/*.card {
   width: 18rem;
 }
 
@@ -19,4 +26,14 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  border: 1px solid red;
 }
+
+main {
+  border: 1px solid black;
+}
+
+.add-btn {
+  width: 100%;
+  max-width: 576px;
+} */

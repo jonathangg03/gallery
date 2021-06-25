@@ -13,23 +13,35 @@ class Gallery extends Component {
   async componentDidMount() {
     this.setState({ data: [], error: null, loading: true });
     try {
-      const response = await fetch("http://localhost:3000/api/upload");
-      const data = await response.json();
+      let response = await fetch("http://localhost:3000/api/upload");
+      let data = await response.json();
       this.setState({ data: data, error: "", loading: false });
+      setInterval(async () => {
+        response = await fetch("http://localhost:3000/api/upload");
+        data = await response.json();
+        this.setState({ data: data, error: "", loading: false });
+      }, 2000);
     } catch (error) {
       this.setState({ data: false, error: error, loading: false });
     }
   }
   render() {
     return (
-      <div className="pt-4 pb-4 cards-container">
-        {this.state.data.map((image) => {
-          return (
-            <div key={image._id} className="ms-2 me-2">
-              <Card {...image} />
-            </div>
-          );
-        })}
+      <div className="row">
+        <div className="container">
+          <div className="row">
+            {this.state.data.map((image) => {
+              return (
+                <div
+                  key={image._id}
+                  className="col-12 col-sm-6 col-lg-4 col-xl-3"
+                >
+                  <Card {...image} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     );
   }

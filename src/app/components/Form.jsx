@@ -77,6 +77,8 @@ class Form extends Component {
             type="submit"
             className="btn btn-primary"
             data-bs-target="#exampleModal"
+            data-bs-dismiss="modal"
+            aria-label="Close"
           >
             Añadir imagen
           </button>

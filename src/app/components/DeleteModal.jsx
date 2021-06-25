@@ -68,6 +68,8 @@ class DeleteModal extends Component {
                 type="button"
                 className="btn btn-danger"
                 onClick={this.deleteImage}
+                data-bs-dismiss="modal"
+                aria-label="Close"
               >
                 Confirmar
               </button>

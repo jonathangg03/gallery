@@ -9,14 +9,14 @@ const Card = ({ _id, name, date, description, imageUrl }) => {
   };
 
   return (
-    <div>
+    <div className="">
       <div className="card mb-4">
         <img src={imageUrl} className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
           <p className="card-text">{description}</p>
           <p className="card-text">{date}</p>
-          <a href={imageUrl} className="btn btn-primary" target="_blank">
+          <a href={imageUrl} className="btn btn-primary me-2" target="_blank">
             Ver imagen
           </a>
           <button

@@ -11,17 +11,19 @@ const Main = () => {
     <div className="container-fluid">
       <Header />
       <main className="row">
-        <div className="d-grid gap-2">
-          <button
-            type="button"
-            className="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#addModal"
-          >
-            Añadir nueva imagen +
-          </button>
+        <div className="container">
+          <div className="row pb-3">
+            <button
+              type="button"
+              className="btn btn-primary m-auto col-11 add_btn"
+              data-bs-toggle="modal"
+              data-bs-target="#addModal"
+            >
+              Añadir nueva imagen +
+            </button>
+          </div>
+          <Gallery />
         </div>
-        <Gallery />
       </main>
       <Footer />
       <AddModal />

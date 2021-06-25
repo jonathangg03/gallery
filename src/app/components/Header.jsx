@@ -3,8 +3,8 @@ import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Header = () => {
   return (
-    <header className="row">
-      <p className="col text-center">Jonathan's Gallery</p>
+    <header className="row pb-2 pt-2">
+      <h1 className="col text-center">Jonathan's Gallery</h1>
     </header>
   );
 };
