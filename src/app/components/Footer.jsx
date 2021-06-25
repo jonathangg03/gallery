@@ -9,9 +9,25 @@ const Footer = () => {
       </div>
       <div className="container">
         <div className="row">
-          <FaGithub className="col-4  mb-2 mt-2 fs-3" />
-          <FaInstagram className="col-4  mb-2 mt-2 fs-3" />
-          <FaTwitter className="col-4  mb-2 mt-2 fs-3" />
+          <div className="col-4 mb-2 mt-2 fs-3 text-center">
+            <a href="https://github.com/jonathangg03" target="_blank">
+              <FaGithub />
+            </a>
+          </div>
+          <div className="col-4 mb-2 mt-2 fs-3 text-center">
+            <a
+              href=""
+              href="https://www.instagram.com/jonathangg_03/"
+              target="_blank"
+            >
+              <FaInstagram />
+            </a>
+          </div>
+          <div className="col-4 mb-2 mt-2 fs-3 text-center">
+            <a href="" href="https://twitter.com/jonathangg_03" target="_blank">
+              <FaTwitter />
+            </a>
+          </div>
         </div>
       </div>
     </footer>
