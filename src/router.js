@@ -1,4 +1,5 @@
 const express = require("express");
+const fs = require("fs");
 const multer = require("multer");
 const path = require("path");
 const moment = require("moment");
@@ -35,6 +36,7 @@ router.post("/upload", upload.single("uploadImage"), async (req, res) => {
     date: moment().format("MMMM Do YYYY, h:mm:ss a"),
     imageUrl: `http://localhost:3000/api/files/${req.file.filename}`,
     description: req.body.description,
+    fileName: req.file.filename,
   });
   await image.save();
   res.send("Imagen subida con exito");
@@ -42,8 +44,15 @@ router.post("/upload", upload.single("uploadImage"), async (req, res) => {
 
 router.delete("/upload/:id", (req, res) => {
   db.findByIdAndRemove(req.params.id)
-    .then(() => res.send("Imagen eliminada con exito"))
+    .then((data) => {
+      fs.unlink(`${__dirname}/uploads/${data.fileName}`, (err) => {
+        if (err) console.log(err);
+        else console.log("Registro eliminado");
+      });
+      res.send("Imagen eliminada con exito");
+    })
     .catch((error) => res.send("No se encontro imagen."));
+  // .then((data) => res.send("Imagen eliminada con exito"))
 });
 
 module.exports = router;
