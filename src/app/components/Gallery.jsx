@@ -18,6 +18,10 @@ const Gallery = ({ getImage, image, loading, error }) => {
     return <Error error={error} />;
   }
 
+  if (image.length === 0) {
+    return <h1>No se han ingresado imagenes aún</h1>;
+  }
+
   return (
     <div className="row">
       <div className="container">

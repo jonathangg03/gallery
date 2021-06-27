@@ -56,6 +56,7 @@ const Form = ({ getImage }) => {
           type="file"
           id="formFile"
           name="uploadImage"
+          accept="image/png, image/jpeg image/jpg"
           required
         />
       </div>

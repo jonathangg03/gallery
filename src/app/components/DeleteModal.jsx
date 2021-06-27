@@ -1,21 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import * as imageActions from "../actions/imageActions";
 
-const DeleteModal = ({ getImage }) => {
-  const handleRemoveId = () => {
-    window.sessionStorage.removeItem("id");
-  };
-
+const DeleteModal = ({ getImage, removeId, delete_id }) => {
   const deleteImage = () => {
     axios
-      .delete(
-        `http://localhost:3000/api/upload/${window.sessionStorage.getItem(
-          "id"
-        )}`
-      )
-      .then((data) => getImage())
+      .delete(`http://localhost:3000/api/upload/${delete_id}`)
+      .then(() => getImage())
       .catch((error) => console.log(error));
   };
 
@@ -38,7 +30,9 @@ const DeleteModal = ({ getImage }) => {
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-              onClick={handleRemoveId}
+              onClick={() => {
+                removeId();
+              }}
             ></button>
           </div>
           <div className="modal-body">
@@ -49,17 +43,16 @@ const DeleteModal = ({ getImage }) => {
               type="button"
               className="btn btn-primary"
               data-bs-dismiss="modal"
-              onClick={handleRemoveId}
+              onClick={() => {
+                removeId();
+              }}
             >
               Cancelar
             </button>
             <button
               type="button"
               className="btn btn-danger"
-              onClick={() => {
-                deleteImage();
-                handleRemoveId();
-              }}
+              onClick={deleteImage}
               data-bs-dismiss="modal"
               aria-label="Close"
             >

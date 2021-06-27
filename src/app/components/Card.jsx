@@ -1,17 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as imageActions from "../actions/imageActions";
 
-const Card = ({ _id, name, date, description, imageUrl }) => {
+const Card = ({ _id, name, date, description, imageUrl, setId, delete_id }) => {
   const handleDelete = () => {
-    if (window.sessionStorage.getItem("id")) {
-      window.sessionStorage.removeItem("id");
-    }
-    window.sessionStorage.setItem("id", _id);
+    setId(_id);
   };
 
   return (
     <div className="">
       <div className="card mb-4">
-        <img src={imageUrl} className="card-img-top" alt="..." />
+        <img src={imageUrl} className="card-img-top" alt={name} />
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
           <p className="card-text">{description}</p>
@@ -34,4 +33,5 @@ const Card = ({ _id, name, date, description, imageUrl }) => {
   );
 };
 
-export default Card;
+const mapStateToProps = ({ imageReducer }) => imageReducer;
+export default connect(mapStateToProps, imageActions)(Card);

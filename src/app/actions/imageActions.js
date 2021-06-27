@@ -1,5 +1,11 @@
 import axios from "axios";
-import { GET_ALL, LOADING, ERROR } from "../types/imagesTypes";
+import {
+  GET_ALL,
+  LOADING,
+  ERROR,
+  SET_DELETE_ID,
+  REMOVE_DELETE_ID,
+} from "../types/imagesTypes";
 
 export const getImage = () => async (dispatch) => {
   dispatch({
@@ -18,4 +24,17 @@ export const getImage = () => async (dispatch) => {
       payload: "No se puede traer las imagenes",
     });
   }
+};
+
+export const setId = (id) => (dispatch) => {
+  dispatch({
+    type: SET_DELETE_ID,
+    payload: id,
+  });
+};
+
+export const removeId = () => (dispatch) => {
+  dispatch({
+    type: REMOVE_DELETE_ID,
+  });
 };

@@ -1,3 +1,9 @@
+.spinner__container {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
+
 .lds-spinner {
   color: official;
   display: inline-block;
