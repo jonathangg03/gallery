@@ -12,7 +12,7 @@ export const getImage = () => async (dispatch) => {
     type: LOADING,
   });
   try {
-    const response = await axios.get("http://localhost:3000/api/upload");
+    const response = await axios.get("/api/upload");
     dispatch({
       type: GET_ALL,
       payload: response.data,

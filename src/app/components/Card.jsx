@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as imageActions from "../actions/imageActions";
 
-const Card = ({ _id, name, date, description, imageUrl, setId, delete_id }) => {
+const Card = ({ _id, name, date, description, imageUrl, setId }) => {
   const handleDelete = () => {
     setId(_id);
   };
