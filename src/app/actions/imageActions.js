@@ -15,7 +15,7 @@ export const getImage = () => async (dispatch) => {
     console.log(error.message);
     dispatch({
       type: ERROR,
-      payload: "Error al traer imagenes",
+      payload: "No se puede traer las imagenes",
     });
   }
 };

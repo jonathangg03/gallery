@@ -1,91 +1,79 @@
-import React, { Component } from "react";
+import React from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import * as imageActions from "../actions/imageActions";
 
-class Form extends Component {
-  constructor() {
-    super();
-    this.state = {
-      data: [],
-      loading: false,
-      error: null,
-    };
-    this.sendImage = this.sendImage.bind(this);
-  }
-
-  sendImage(event) {
+const Form = ({ getImage }) => {
+  const sendImage = (event) => {
     event.preventDefault();
-    this.setState({ data: [], error: null, loading: true });
-    console.log("ok");
     try {
       const formData = new FormData();
       formData.append("name", event.target[0].value);
       formData.append("description", event.target[1].value);
       formData.append("uploadImage", event.target[2].files[0]);
-      axios
-        .post("http://localhost:3000/api/upload", formData)
-        .then((data) =>
-          this.setState({ data: data, error: "", loading: false })
-        )
-        .catch((err) => console.log(err));
+      axios.post("http://localhost:3000/api/upload", formData).then((data) => {
+        getImage();
+        event.target.reset();
+      });
     } catch (error) {
-      this.setState({ data: false, error: error, loading: false });
+      console.log(error);
     }
-  }
+  };
 
-  render() {
-    return (
-      <form action="/api/upload" onSubmit={this.sendImage}>
-        <div className="mb-3">
-          <label htmlFor="exampleFormControlInput1" className="form-label">
-            Titulo de la imagen
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="exampleFormControlInput1"
-            name="name"
-            placeholder="Titulo..."
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleFormControlTextarea1" className="form-label">
-            Descripción
-          </label>
-          <textarea
-            className="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"
-            name="description"
-            required
-          ></textarea>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="formFile" className="form-label">
-            Archivo de la imagen
-          </label>
-          <input
-            className="form-control"
-            type="file"
-            id="formFile"
-            name="uploadImage"
-            required
-          />
-        </div>
-        <div className="d-grid gap-2">
-          <button
-            type="submit"
-            className="btn btn-primary"
-            data-bs-target="#exampleModal"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          >
-            Añadir imagen
-          </button>
-        </div>
-      </form>
-    );
-  }
-}
+  return (
+    <form action="/api/upload" onSubmit={sendImage}>
+      <div className="mb-3">
+        <label htmlFor="exampleFormControlInput1" className="form-label">
+          Titulo de la imagen
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="exampleFormControlInput1"
+          name="name"
+          placeholder="Titulo..."
+          required
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="exampleFormControlTextarea1" className="form-label">
+          Descripción
+        </label>
+        <textarea
+          className="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          name="description"
+          required
+        ></textarea>
+      </div>
+      <div className="mb-3">
+        <label htmlFor="formFile" className="form-label">
+          Archivo de la imagen
+        </label>
+        <input
+          className="form-control"
+          type="file"
+          id="formFile"
+          name="uploadImage"
+          required
+        />
+      </div>
+      <div className="d-grid gap-2">
+        <button
+          type="submit"
+          className="btn btn-primary"
+          data-bs-target="#exampleModal"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          Añadir imagen
+        </button>
+      </div>
+    </form>
+  );
+};
 
-export default Form;
+const mapStateToProps = ({ imageReducer }) => imageReducer;
+
+export default connect(mapStateToProps, imageActions)(Form);

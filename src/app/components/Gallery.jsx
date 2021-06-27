@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import * as imageActions from "../actions/imageActions";
 import Spinner from "./Spinner.jsx";
+import Error from "./Error.jsx";
 import Card from "./Card.jsx";
 
 const Gallery = ({ getImage, image, loading, error }) => {
@@ -14,7 +15,7 @@ const Gallery = ({ getImage, image, loading, error }) => {
   }
 
   if (error) {
-    return <h2>{error}</h2>;
+    return <Error error={error} />;
   }
 
   return (
