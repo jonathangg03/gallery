@@ -34,7 +34,7 @@ router.post("/upload", upload.single("uploadImage"), async (req, res) => {
   const image = new db({
     name: req.body.name,
     date: moment().format("MMMM Do YYYY, h:mm:ss a"),
-    imageUrl: `/uploads/${req.file.filename}`,
+    imageUrl: `/api/files/${req.file.filename}`,
     description: req.body.description,
     fileName: req.file.filename,
   });
