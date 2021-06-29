@@ -45,7 +45,7 @@ router.post("/upload", upload.single("uploadImage"), async (req, res) => {
 router.delete("/upload/:id", (req, res) => {
   db.findByIdAndRemove(req.params.id)
     .then((data) => {
-      fs.unlink(`${__dirname}/uploads/${data.fileName}`, (err) => {
+      fs.unlink(`${__dirname}/public/uploads/${data.fileName}`, (err) => {
         if (err) console.log(err);
         else console.log("Registro eliminado");
       });
