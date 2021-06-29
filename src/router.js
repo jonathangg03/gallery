@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get("/upload", (req, res) => {
+router.get("/", (req, res) => {
   if (req.body.id) {
     db.findById(req.body.id)
       .then((image) => res.send(image))
@@ -30,11 +30,11 @@ router.get("/upload", (req, res) => {
   }
 });
 
-router.post("/upload", upload.single("uploadImage"), async (req, res) => {
+router.post("/", upload.single("uploadImage"), async (req, res) => {
   const image = new db({
     name: req.body.name,
     date: moment().format("MMMM Do YYYY, h:mm:ss a"),
-    imageUrl: `/api/files/${req.file.filename}`,
+    imageUrl: `/uploads/${req.file.filename}`,
     description: req.body.description,
     fileName: req.file.filename,
   });
@@ -42,7 +42,7 @@ router.post("/upload", upload.single("uploadImage"), async (req, res) => {
   res.send("Imagen subida con exito");
 });
 
-router.delete("/upload/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
   db.findByIdAndRemove(req.params.id)
     .then((data) => {
       fs.unlink(`${__dirname}/public/uploads/${data.fileName}`, (err) => {
