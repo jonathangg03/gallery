@@ -6,7 +6,7 @@ import * as imageActions from "../actions/imageActions";
 const DeleteModal = ({ getImage, removeId, delete_id }) => {
   const deleteImage = () => {
     axios
-      .delete(`/api/upload/${delete_id}`)
+      .delete(`http://localhost:3000/api/upload/${delete_id}`)
       .then(() => getImage())
       .catch((error) => console.log(error));
   };

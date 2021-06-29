@@ -7,7 +7,7 @@ const db = require("./database");
 const router = express.Router();
 
 const storage = multer.diskStorage({
-  destination: __dirname + "/uploads",
+  destination: __dirname + "/public/uploads",
   filename: (req, file, cb) => {
     cb(
       null,

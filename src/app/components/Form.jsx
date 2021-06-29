@@ -11,7 +11,7 @@ const Form = ({ getImage }) => {
       formData.append("name", event.target[0].value);
       formData.append("description", event.target[1].value);
       formData.append("uploadImage", event.target[2].files[0]);
-      axios.post("/api/upload", formData).then((data) => {
+      axios.post("http://localhost:3000/api/upload", formData).then((data) => {
         getImage();
         event.target.reset();
       });
