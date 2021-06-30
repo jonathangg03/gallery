@@ -5,6 +5,13 @@ const path = require("path");
 const moment = require("moment");
 const db = require("./database");
 const router = express.Router();
+const cloudinary = require("cloudinary");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
+});
 
 const storage = multer.diskStorage({
   destination: __dirname + "/public/uploads",
@@ -31,24 +38,28 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", upload.single("uploadImage"), async (req, res) => {
+  const imageUpload = await cloudinary.v2.uploader.upload(req.file.path);
+  // console.log(imageUpload);
   const image = new db({
     name: req.body.name,
     date: moment().format("MMMM Do YYYY, h:mm:ss a"),
-    imageUrl: `/uploads/${req.file.filename}`,
+    imageUrl: imageUpload.url,
     description: req.body.description,
     fileName: req.file.filename,
+    public_id: imageUpload.public_id,
   });
   await image.save();
+  fs.unlink(`${__dirname}/public/uploads/${req.file.filename}`, (err) => {
+    if (err) console.log(err);
+    else console.log("Registro eliminado");
+  });
   res.send("Imagen subida con exito");
 });
 
 router.delete("/:id", (req, res) => {
   db.findByIdAndRemove(req.params.id)
-    .then((data) => {
-      fs.unlink(`${__dirname}/public/uploads/${data.fileName}`, (err) => {
-        if (err) console.log(err);
-        else console.log("Registro eliminado");
-      });
+    .then(async (data) => {
+      await cloudinary.v2.uploader.destroy(data.public_id);
       res.send("Imagen eliminada con exito");
     })
     .catch((error) => res.send("No se encontro imagen."));

@@ -12,6 +12,7 @@ const imageSchema = new mongoose.Schema({
   imageUrl: String,
   description: String,
   fileName: String,
+  public_id: String,
 });
 //jona_gallery
 //
