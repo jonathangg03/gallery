@@ -5,42 +5,20 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node ./src/index.js",
-    "postinstall": "npm run build",
-    "dev": "webpack serve --env development --mode development",
-    "build": "webpack --mode production"
+    "dev": "webpack serve --env development --mode development"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.1",
     "cloudinary": "^1.26.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "mongoose": "^5.12.14",
-    "multer": "^1.4.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-icons": "^4.2.0",
-    "react-redux": "^7.2.4",
-    "react-router-dom": "^5.2.0",
-    "redux": "^4.1.0",
-    "redux-thunk": "^2.3.0",
-    "sliced": "^1.0.1"
+    "multer": "^1.4.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/preset-env": "^7.14.5",
-    "@babel/preset-react": "^7.14.5",
-    "babel-loader": "^8.2.2",
-    "css-loader": "^5.2.6",
-    "dotenv": "^10.0.0",
-    "html-loader": "^2.1.2",
-    "html-webpack-plugin": "^5.3.1",
-    "mini-css-extract-plugin": "^1.6.0",
-    "webpack": "^5.39.1",
-    "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^3.11.2"
+    "dotenv": "^10.0.0"
   }
 }
