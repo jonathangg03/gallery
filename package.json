@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./src/index.js",
     "dev": "webpack serve --env development --mode development",
-    "vercel-build": "npm run build"
+    "vercel-build": "npm start"
   },
   "keywords": [],
   "author": "",
